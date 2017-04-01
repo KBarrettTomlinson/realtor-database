@@ -12,4 +12,4 @@ router.get( '/', function ( req, res){
 });//ends router get for /
 
 //exports
-exports = module.router;
+module.exports = router;
