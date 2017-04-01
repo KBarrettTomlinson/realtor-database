@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         expand: true,
         cwd: 'node_modules/jquery/dist/',
         src: ['jquery.js'],
-        dest: 'server/public/vendors/'
+        dest: 'server/public/vendors/jquery'
       },
       bootstrap: {
         expand: true,
