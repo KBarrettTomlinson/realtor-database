@@ -1,0 +1,43 @@
+/*elements*/
+html,body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: whitesmoke;
+}
+
+h1{
+  font-size: 54px;
+  text-transform: uppercase;
+  color: cornflowerblue;
+  font-family: 'Raleway', sans-serif;
+}
+
+/*classes and ids*/
+[class*="col-"]{
+  min-height: 90px;
+}
+
+.container{
+
+}
+
+#headerDiv{
+
+}
+
+#pictureDiv{
+
+}
+
+.image-responsive{
+  width: 100%;
+  max-height: 90px;
+  background-position: cover;
+}
+
+#headerTextDiv{
+text-align: right;
+}

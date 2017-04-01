@@ -53,6 +53,13 @@ $(document).ready(function(){
   }//ends sortListings
 
 //DOM
+  function displayListings(){
+    console.log("inside displayListings");
+    displayRentals();
+    displaySales();
+
+  }//ends displayListings
+
   function displayRentals(){
     console.log("inside displayRentals");
   }//ends displayRentals
@@ -71,8 +78,7 @@ $(document).ready(function(){
       success : function(response){
         console.log( "I've returned, and I've brought you this getListings:",response);
         sortListings(response);
-        displayRentals();
-        displaySales();
+        displayListings();
       }//ends success
     });//ends ajax object
   }//ends getListings
