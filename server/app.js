@@ -19,7 +19,7 @@ MongoDB.on("error", function(err){
 
 //connection success
 MongoDB.once("open", function(){
-  console.log("Mongo and I had a long coffee, we feel good about eachother now");
+  console.log("Mongo and I had a long coffee, we feel good about each other now");
 });
 
 //set port

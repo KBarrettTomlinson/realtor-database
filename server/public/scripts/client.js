@@ -23,12 +23,48 @@ $(document).ready(function(){
 //enable
   function enable(value){
     console.log("inside enable");
-    clickSumbitNewListing();
+    if (value){
+      $( '#listingForm' ).on( 'submit', function(event){
+        event.preventDefault();
+        console.log("you've clicked submit");
+        clickSumbitNewListing();
+        clearForm();
+      });
+    }
+    else{
+      $( '#listingForm' ).off( 'submit', function(event){
+        event.preventDefault();
+        console.log("you've clicked submit");
+      });
+    }
   }//ends enable
 
 //event handlers
   function clickSumbitNewListing(){
     console.log("inside clickSumbitNewListing");
+    console.log("good job! you made it.");
+    var newObject = {};
+
+    var price = $( '#price' ).val();
+    var sqft  = $( '#sqft' ).val();
+    var city  = $( '#city' ).val();
+
+    newObject.sqft = sqft;
+    newObject.city = city;
+
+    var rental = $('#rentalRadio:checked').val();
+    if (rental === 'on')  {
+      newObject.rent = price;
+      console.log("I MADE SOMETHING! for a rental", newObject);
+      postNewRental(newObject);
+    }
+    else {
+      newObject.cost = price;
+      console.log("I MADE SOMETHING! for a sale", newObject);
+      postNewSale(newObject);
+    }
+
+
   }//ends clickSumbitNewListing
 
 //logic
@@ -36,7 +72,6 @@ $(document).ready(function(){
   //sort listings into rental and sale properties
   function sortListings(objectsArray){
     console.log("inside sortListings");
-    console.log("guess what everyone! we have some sorting to do", objectsArray);
     for ( var i = 0; i < objectsArray.length; i++){
       var listing = objectsArray[i];
       var rent = parseInt(listing.rent);
@@ -51,11 +86,20 @@ $(document).ready(function(){
       }//adds to salesArray
 
     }//ends sorting for loop
-    console.log("rentalArray", rentalArray);
-    console.log("salesArray", salesArray);
   }//ends sortListings
 
 //DOM
+
+  function clearForm(){
+    $( '#price' ).val('');
+    $( '#sqft' ).val('');
+    $( '#city' ).val('');
+    $( '#rentalRadio' ).prop('checked', false);
+
+    $( '#price' ).focus();
+
+  }//ends clearForm
+
   function displayListings(){
     console.log("inside displayListings");
     displayRentals();
@@ -64,6 +108,8 @@ $(document).ready(function(){
   }//ends displayListings
 
   function displayRentals(){
+    console.log("inside displayRentals");
+    $( '#rent' ).empty();
 
     for (var i = 0; i < rentalArray.length; i++){
       var displayObject = rentalArray[i];
@@ -74,12 +120,12 @@ $(document).ready(function(){
 
       var $el;
 
-      if (i % 4 ===0 ){
+      if (i % 3 ===0 ){
         $('#rent').append('<div class = "row"></div>');
         $el = $('#rent').children().last();
       }
 
-      $el.append('<div class = "col-md-3 col-xs-6"></div>');
+      $el.append('<div class = "col-sm-4"></div>');
       var $el1 = $el.children().last();
       $el1.append('<div class="panel panel-default"></div>');
       var $el2 = $el1.children().last();
@@ -89,16 +135,19 @@ $(document).ready(function(){
       $el2 = $el1.children().last();
       $el2.append('<div class="panel-body"></div>');
       $el3 = $el2.children().last();
-      $el3.append('<p>Rent: '+rent+' /year.</p>');
-      $el3.append('<p>Sqare Footage: '+sqft+' sqft</p>');
-      $el3.append('<p>City: '+city+'</p>');
+      $el3.append('<tr><td>Rent:    </td><td> $'+rent+'.00</td></tr>');
+      $el3.append('<tr><td>Square Ft.: </td><td> '+sqft+' sqft</td></tr>');
+      $el3.append('<tr><td>City:          </td><td> '+city+'</td></tr>');
+      $el3.append('<span class="glyphicon glyphicon-picture"></span>');
+      $el3.append('<span class="glyphicon glyphicon-map-marker"></span>');
+      $el3.append('<span class="glyphicon glyphicon-inbox"></span>');
     }//ends for loop
 
   }//ends displayRentals
 
   function displaySales(){
     console.log("inside displaySales");
-    console.log("inside displaySales, this is the array I have:",salesArray);
+    $( '#sale' ).empty();
 
     for (var i = 0; i < salesArray.length; i++){
       var displayObject = salesArray[i];
@@ -109,12 +158,12 @@ $(document).ready(function(){
 
       var $el;
 
-      if (i % 4 ===0 ){
+      if (i % 3 ===0 ){
         $('#sale').append('<div class = "row"></div>');
         $el = $('#sale').children().last();
       }
 
-      $el.append('<div class = "col-md-3 col-xs-6"></div>');
+      $el.append('<div class = "col-sm-4"></div>');
       var $el1 = $el.children().last();
       $el1.append('<div class="panel panel-default"></div>');
       var $el2 = $el1.children().last();
@@ -124,9 +173,12 @@ $(document).ready(function(){
       $el2 = $el1.children().last();
       $el2.append('<div class="panel-body"></div>');
       $el3 = $el2.children().last();
-      $el3.append('<p>Sale Price: '+sale+'</p>');
-      $el3.append('<p>Sqare Footage: '+sqft+' sqft</p>');
-      $el3.append('<p>City: '+city+'</p>');
+      $el3.append('<tr><td>Sale Price:    </td><td> $'+sale+'.00</td></tr>');
+      $el3.append('<tr><td>Square Ft.: </td><td> '+sqft+' sqft</td></tr>');
+      $el3.append('<tr><td>City:          </td><td> '+city+'</td></tr>');
+      $el3.append('<span class="glyphicon glyphicon-picture"></span>');
+      $el3.append('<span class="glyphicon glyphicon-map-marker"></span>');
+      $el3.append('<span class="glyphicon glyphicon-inbox"></span>');
     }//ends for loop
 
   }//ends displaySales
@@ -139,7 +191,6 @@ $(document).ready(function(){
       type    : 'GET',
       url     : '/realty',
       success : function(response){
-        console.log( "I've returned, and I've brought you this getListings:",response);
         sortListings(response);
         displayListings();
       }//ends success
@@ -147,6 +198,29 @@ $(document).ready(function(){
   }//ends getListings
 
   //POSTS
+  function postNewRental(newObject){
+    $.ajax({
+      type    : 'POST',
+      url     : '/realty/addRental',
+      data    : newObject,
+      success : function(response){
+        console.log("I posted something rental and all I got was this lousy t-shirt", response);
+        getListings();
+      }//ends success
+    });//ends ajax object
+  }//ends postNewRental
+
+  function postNewSale(newObject){
+    $.ajax({
+      type    : 'POST',
+      url     : '/realty/addSale',
+      data    : newObject,
+      success : function(response){
+        console.log("I posted something sale and all I got was this lousy t-shirt", response);
+        getListings();
+      }//ends success
+    });//ends ajax object
+  }//ends postNewSale
 
   //PUTS
 

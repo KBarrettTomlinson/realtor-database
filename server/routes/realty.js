@@ -37,12 +37,38 @@ var Sales = mongoose.model( "Sales", CostSchema, "listings");
         console.log(err);
         res.sendStatus(500);
       }//ends error
-      console.log("I've retrieved allListings from the collection. Sending this:", allListings);
       res.send(allListings);
     });
   });//ends get all rentals
 
 //posts
+  router.post( '/addRental', function(req,res){
+    var rental = new Rentals();
+    rental.rent = req.body.rent;
+    rental.sqft = req.body.sqft;
+    rental.city = req.body.city;
+    rental.save(function(err, savedRental){
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+      }
+      res.send(savedRental);
+    });//end rental.save
+  });//ends router.post to /addRental
+
+  router.post( '/addSale', function(req,res){
+    var sale = new Sales();
+    sale.cost = req.body.cost;
+    sale.sqft = req.body.sqft;
+    sale.city = req.body.city;
+    sale.save(function(err, savedSale){
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+      }
+      res.send(savedSale);
+    });//end rental.save
+  });//ends router.post to /addSale
 
 //puts
 
