@@ -49,19 +49,21 @@ $(document).ready(function(){
     var sqft  = $( '#sqft' ).val();
     var city  = $( '#city' ).val();
 
-    var rental = $('#rentalRadio:checked').val();
-    if (rental === 'on')  {
-      newObject.rent = price;
-    }
-    else {
-      newObject.cost = price;
-    }
-
     newObject.sqft = sqft;
     newObject.city = city;
 
-    console.log("I MADE SOMETHING!", newObject);
-    postNewListing(newObject);
+    var rental = $('#rentalRadio:checked').val();
+    if (rental === 'on')  {
+      newObject.rent = price;
+      console.log("I MADE SOMETHING! for a rental", newObject);
+      postNewRental(newObject);
+    }
+    else {
+      newObject.cost = price;
+      console.log("I MADE SOMETHING! for a sale", newObject);
+      postNewSale(newObject);
+    }
+
 
   }//ends clickSumbitNewListing
 
@@ -108,7 +110,7 @@ $(document).ready(function(){
   function displayRentals(){
     console.log("inside displayRentals");
     $( '#rent' ).empty();
-    
+
     for (var i = 0; i < rentalArray.length; i++){
       var displayObject = rentalArray[i];
 
@@ -196,17 +198,29 @@ $(document).ready(function(){
   }//ends getListings
 
   //POSTS
-  function postNewListing(newObject){
+  function postNewRental(newObject){
     $.ajax({
       type    : 'POST',
-      url     : '/realty/add',
+      url     : '/realty/addRental',
       data    : newObject,
       success : function(response){
-        console.log("I posted something and all I got was this lousy t-shirt", response);
+        console.log("I posted something rental and all I got was this lousy t-shirt", response);
         displayListings();
       }//ends success
     });//ends ajax object
-  }//ends postNewListing
+  }//ends postNewRental
+
+  function postNewSale(newObject){
+    $.ajax({
+      type    : 'POST',
+      url     : '/realty/addSale',
+      data    : newObject,
+      success : function(response){
+        console.log("I posted something sale and all I got was this lousy t-shirt", response);
+        displayListings();
+      }//ends success
+    });//ends ajax object
+  }//ends postNewSale
 
   //PUTS
 

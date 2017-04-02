@@ -43,6 +43,48 @@ var Sales = mongoose.model( "Sales", CostSchema, "listings");
   });//ends get all rentals
 
 //posts
+// router.post("/", function(req,res){
+//   //Instance of the Model to be saved to the database
+//   var employee = new Employees();
+//   employee.name = req.body.name;
+//   employee.position = req.body.position;
+//   employee.salary = req.body.salary;
+//   employee.save(function(err, savedEmployee){
+//     if(err){
+//       console.log(err);
+//       res.sendStatus(500);
+//     }
+//
+//     res.send(savedEmployee);
+//   });
+// });
+  router.post( '/addRental', function(req,res){
+    var rental = new Rentals();
+    rental.rent = req.body.rent;
+    rental.sqft = req.body.sqft;
+    rental.city = req.body.city;
+    rental.save(function(err, savedRental){
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+      }
+      res.send(savedRental);
+    });//end rental.save
+  });//ends router.post to /addRental
+
+  router.post( '/addSale', function(req,res){
+    var sale = new Sales();
+    sale.cost = req.body.cost;
+    sale.sqft = req.body.sqft;
+    sale.city = req.body.city;
+    sale.save(function(err, savedSale){
+      if(err){
+        console.log(err);
+        res.sendStatus(500);
+      }
+      res.send(savedSale);
+    });//end rental.save
+  });//ends router.post to /addSale
 
 //puts
 
