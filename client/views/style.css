@@ -15,6 +15,7 @@ h1{
   font-family: 'Raleway', sans-serif;
 }
 
+
 /*classes and ids*/
 [class*="col-"]{
   min-height: 90px;
@@ -30,4 +31,8 @@ h1{
 
 #headerTextDiv{
 text-align: right;
+}
+
+.panel{
+  margin: 10px;
 }

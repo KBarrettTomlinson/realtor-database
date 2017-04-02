@@ -20,18 +20,19 @@ $(document).ready(function(){
 
 //FOR SUBMIT NEW LISTING
 
-// //enable
-//   function enable(value){
-//     console.log("inside enable");
-//     clickSumbitNewListing();
-//   }//ends enable
-//
-// //event handlers
-//   function clickSumbitNewListing(){
-//     console.log("inside clickSumbitNewListing");
-//   }//ends clickSumbitNewListing
+//enable
+  function enable(value){
+    console.log("inside enable");
+    clickSumbitNewListing();
+  }//ends enable
+
+//event handlers
+  function clickSumbitNewListing(){
+    console.log("inside clickSumbitNewListing");
+  }//ends clickSumbitNewListing
 
 //logic
+
   //sort listings into rental and sale properties
   function sortListings(objectsArray){
     console.log("inside sortListings");
@@ -63,8 +64,33 @@ $(document).ready(function(){
   }//ends displayListings
 
   function displayRentals(){
-    console.log("inside displayRentals");
-    console.log("inside displayRentals, this is the array I have:",rentalArray);
+    $('#rent').append('<div class = "row"></div>');
+    var $el = $('#rent').children().last();
+
+    for (var i = 0; i < rentalArray.length; i++){
+      var displayObject = rentalArray[i];
+
+      var rent = displayObject.rent;
+      var sqft = displayObject.sqft;
+      var city = displayObject.city;
+
+
+
+      $el.append('<div class = "col-md-3"></div>');
+      var $el1 = $el.children().last();
+      $el1.append('<div class="panel panel-default"></div>');
+      var $el2 = $el1.children().last();
+      $el2.append('<div class="panel-heading"></div>');
+      var $el3 = $el2.children().last();
+      $el3.append('<h3 class="panel-title">Rental Unit</h3>');
+      $el2 = $el1.children().last();
+      $el2.append('<div class="panel-body"></div>');
+      $el3 = $el2.children().last();
+      $el3.append('<p>Rent: '+rent+' /year.</p>');
+      $el3.append('<p>Sqare Footage: '+sqft+' sqft</p>');
+      $el3.append('<p>City: '+city+'</p>');
+    }//ends for loop
+
   }//ends displayRentals
 
   function displaySales(){
