@@ -48,7 +48,60 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="rent"></div>
           <div role="tabpanel" class="tab-pane" id="sale"></div>
-          <div role="tabpanel" class="tab-pane" id="new">Append Here for new listing</div>
+          <div role="tabpanel" class="tab-pane" id="new">
+
+
+            <form id = 'listingForm' class="form-horizontal">
+
+              <div class="form-group">
+                <label for="inputCost3" class="col-sm-2 control-label">Cost</label>
+                <div class="col-sm-10">
+                  <input id = 'cost' type="text" class="form-control" id="inputCost3" placeholder="Cost">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputSqft3" class="col-sm-2 control-label">Square Ft.</label>
+                <div class="col-sm-10">
+                  <input id = 'sqft' type="text" class="form-control" id="inputSqft3" placeholder="Square Ft.">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputCity3" class="col-sm-2 control-label">City</label>
+                <div class="col-sm-10">
+                  <input id = 'city' type="text" class="form-control" id="inputCite3" placeholder="City">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Rental Unit
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Unit For Sale
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button id = 'submitListing' type="submit" class="btn btn-default">Submit New Listing</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
         </div>
       </div>
       <!-- ends tabs display -->
