@@ -23,22 +23,46 @@ $(document).ready(function(){
 //enable
   function enable(value){
     console.log("inside enable");
-    if (enable){
-      $( '#submitForm' ).on( 'submit', function(event){
+    if (value){
+      $( '#listingForm' ).on( 'submit', function(event){
+        event.preventDefault();
+        console.log("you've clicked submit");
+        clickSumbitNewListing();
+        clearForm();
+      });
+    }
+    else{
+      $( '#listingForm' ).off( 'submit', function(event){
         event.preventDefault();
         console.log("you've clicked submit");
       });
     }
-    else{
-
-
-    }
-    clickSumbitNewListing();
   }//ends enable
 
 //event handlers
   function clickSumbitNewListing(){
     console.log("inside clickSumbitNewListing");
+    console.log("good job! you made it.");
+    var newObject = {};
+
+    var price = $( '#price' ).val();
+    var sqft  = $( '#sqft' ).val();
+    var city  = $( '#city' ).val();
+
+    var rental = $('#rentalRadio:checked').val();
+    if (rental === 'on')  {
+      newObject.rent = price;
+    }
+    else {
+      newObject.cost = price;
+    }
+
+    newObject.sqft = sqft;
+    newObject.city = city;
+
+    console.log("I MADE SOMETHING!", newObject);
+    postNewListing(newObject);
+
   }//ends clickSumbitNewListing
 
 //logic
@@ -63,6 +87,17 @@ $(document).ready(function(){
   }//ends sortListings
 
 //DOM
+
+  function clearForm(){
+    $( '#price' ).val('');
+    $( '#sqft' ).val('');
+    $( '#city' ).val('');
+    $( '#rentalRadio' ).prop('checked', false);
+
+    $( '#price' ).focus();
+
+  }//ends clearForm
+
   function displayListings(){
     console.log("inside displayListings");
     displayRentals();
@@ -71,7 +106,9 @@ $(document).ready(function(){
   }//ends displayListings
 
   function displayRentals(){
-
+    console.log("inside displayRentals");
+    $( '#rent' ).empty();
+    
     for (var i = 0; i < rentalArray.length; i++){
       var displayObject = rentalArray[i];
 
@@ -108,6 +145,7 @@ $(document).ready(function(){
 
   function displaySales(){
     console.log("inside displaySales");
+    $( '#sale' ).empty();
 
     for (var i = 0; i < salesArray.length; i++){
       var displayObject = salesArray[i];
@@ -158,6 +196,17 @@ $(document).ready(function(){
   }//ends getListings
 
   //POSTS
+  function postNewListing(newObject){
+    $.ajax({
+      type    : 'POST',
+      url     : '/realty/add',
+      data    : newObject,
+      success : function(response){
+        console.log("I posted something and all I got was this lousy t-shirt", response);
+        displayListings();
+      }//ends success
+    });//ends ajax object
+  }//ends postNewListing
 
   //PUTS
 
