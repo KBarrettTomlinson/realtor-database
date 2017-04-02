@@ -64,8 +64,6 @@ $(document).ready(function(){
   }//ends displayListings
 
   function displayRentals(){
-    $('#rent').append('<div class = "row"></div>');
-    var $el = $('#rent').children().last();
 
     for (var i = 0; i < rentalArray.length; i++){
       var displayObject = rentalArray[i];
@@ -74,9 +72,14 @@ $(document).ready(function(){
       var sqft = displayObject.sqft;
       var city = displayObject.city;
 
+      var $el;
 
+      if (i % 4 ===0 ){
+        $('#rent').append('<div class = "row"></div>');
+        $el = $('#rent').children().last();
+      }
 
-      $el.append('<div class = "col-md-3"></div>');
+      $el.append('<div class = "col-md-3 col-xs-6"></div>');
       var $el1 = $el.children().last();
       $el1.append('<div class="panel panel-default"></div>');
       var $el2 = $el1.children().last();
@@ -96,6 +99,36 @@ $(document).ready(function(){
   function displaySales(){
     console.log("inside displaySales");
     console.log("inside displaySales, this is the array I have:",salesArray);
+
+    for (var i = 0; i < salesArray.length; i++){
+      var displayObject = salesArray[i];
+
+      var sale = displayObject.cost;
+      var sqft = displayObject.sqft;
+      var city = displayObject.city;
+
+      var $el;
+
+      if (i % 4 ===0 ){
+        $('#sale').append('<div class = "row"></div>');
+        $el = $('#sale').children().last();
+      }
+
+      $el.append('<div class = "col-md-3 col-xs-6"></div>');
+      var $el1 = $el.children().last();
+      $el1.append('<div class="panel panel-default"></div>');
+      var $el2 = $el1.children().last();
+      $el2.append('<div class="panel-heading"></div>');
+      var $el3 = $el2.children().last();
+      $el3.append('<h3 class="panel-title">Unit for Sale</h3>');
+      $el2 = $el1.children().last();
+      $el2.append('<div class="panel-body"></div>');
+      $el3 = $el2.children().last();
+      $el3.append('<p>Sale Price: '+sale+'</p>');
+      $el3.append('<p>Sqare Footage: '+sqft+' sqft</p>');
+      $el3.append('<p>City: '+city+'</p>');
+    }//ends for loop
+
   }//ends displaySales
 
 
