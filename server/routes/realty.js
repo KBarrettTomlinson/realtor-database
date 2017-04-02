@@ -28,6 +28,7 @@ var Listings = mongoose.model( "listings", ListingsSchema);
 var Rentals = mongoose.model( "Rentals", RentSchema, "listings");
 var Sales = mongoose.model( "Sales", CostSchema, "listings");
 
+//CRUD
 //gets
   //gets all listings
   router.get( '/', function(req,res){
