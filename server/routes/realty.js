@@ -37,27 +37,11 @@ var Sales = mongoose.model( "Sales", CostSchema, "listings");
         console.log(err);
         res.sendStatus(500);
       }//ends error
-      console.log("I've retrieved allListings from the collection. Sending this:", allListings);
       res.send(allListings);
     });
   });//ends get all rentals
 
 //posts
-// router.post("/", function(req,res){
-//   //Instance of the Model to be saved to the database
-//   var employee = new Employees();
-//   employee.name = req.body.name;
-//   employee.position = req.body.position;
-//   employee.salary = req.body.salary;
-//   employee.save(function(err, savedEmployee){
-//     if(err){
-//       console.log(err);
-//       res.sendStatus(500);
-//     }
-//
-//     res.send(savedEmployee);
-//   });
-// });
   router.post( '/addRental', function(req,res){
     var rental = new Rentals();
     rental.rent = req.body.rent;

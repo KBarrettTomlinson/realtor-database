@@ -205,7 +205,7 @@ $(document).ready(function(){
       data    : newObject,
       success : function(response){
         console.log("I posted something rental and all I got was this lousy t-shirt", response);
-        displayListings();
+        getListings();
       }//ends success
     });//ends ajax object
   }//ends postNewRental
@@ -217,7 +217,7 @@ $(document).ready(function(){
       data    : newObject,
       success : function(response){
         console.log("I posted something sale and all I got was this lousy t-shirt", response);
-        displayListings();
+        getListings();
       }//ends success
     });//ends ajax object
   }//ends postNewSale
