@@ -27,21 +27,31 @@
     <div class = 'container'>
 
       <div id = 'headerDiv' class = 'row'>
+
         <div id = 'headerTextDiv' class = 'col-md-12'>
           <h1 class = 'hidden-xs'>K. Barrett Realty</h1>
-          <h1 class = 'visible-xs'>KBR</h1>
+          <h1 class = 'visible-xs'>K B Realty</h1>
         </div>
       </div>
       <!-- ends header row -->
 
-      <div id = 'pictureDiv' class = 'row'>
-        <div class = 'col-md-12'>
-          <a><img class = 'image-responsive' src="/views/logo.jpg"></a>
+      <!-- tabs display -->
+      <div>
+        <!--tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#rent" aria-controls="rent" role="tab" data-toggle="tab">for Rent</a></li>
+          <li role="presentation"><a href="#sale" aria-controls="sale" role="tab" data-toggle="tab">for Sale</a></li>
+          <li role="presentation"><a href="#new" aria-controls="new" role="tab" data-toggle="tab">add a new Listing</a></li>
+        </ul>
+
+        <!--tab divs -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="rent">Append Here for rent</div>
+          <div role="tabpanel" class="tab-pane" id="sale">Append Here for sale</div>
+          <div role="tabpanel" class="tab-pane" id="new">Append Here for new listing</div>
         </div>
       </div>
-      <!-- ends pictureDiv -->
-
-
+      <!-- ends tabs display -->
 
     </div>
     <!-- ends container div -->

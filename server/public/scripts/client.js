@@ -9,25 +9,27 @@ $(document).ready(function(){
   console.log("I'm here for you.");
   console.log("good work buddy, grunt is grunting!");
   init();
-  getListings();
 });
 
 //init
   function init(){
     console.log("inside init");
     enable(enabled);
+    getListings();
   }//ends init
 
-//enable
-  function enable(value){
-    console.log("inside enable");
-    clickSumbitNewListing();
-  }//ends enable
+//FOR SUBMIT NEW LISTING
 
-//event handlers
-  function clickSumbitNewListing(){
-    console.log("inside clickSumbitNewListing");
-  }//ends clickSumbitNewListing
+// //enable
+//   function enable(value){
+//     console.log("inside enable");
+//     clickSumbitNewListing();
+//   }//ends enable
+//
+// //event handlers
+//   function clickSumbitNewListing(){
+//     console.log("inside clickSumbitNewListing");
+//   }//ends clickSumbitNewListing
 
 //logic
   //sort listings into rental and sale properties
@@ -62,10 +64,12 @@ $(document).ready(function(){
 
   function displayRentals(){
     console.log("inside displayRentals");
+    console.log("inside displayRentals, this is the array I have:",rentalArray);
   }//ends displayRentals
 
   function displaySales(){
     console.log("inside displaySales");
+    console.log("inside displaySales, this is the array I have:",salesArray);
   }//ends displaySales
 
 
