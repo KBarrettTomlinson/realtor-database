@@ -1,0 +1,60 @@
+/*elements*/
+html,body{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: whitesmoke;
+  color: slategray;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1{
+  font-size: 54px;
+  text-transform: uppercase;
+  color: cornflowerblue;
+}
+
+img{
+  width: 100%;
+}
+
+td{
+  padding-right: 10px;
+}
+
+
+.container{
+  min-width: 500px;
+
+}
+
+#headerDiv{
+
+}
+
+#headerTextDiv{
+text-align: right;
+}
+
+.panel{
+  margin: 10px;
+}
+
+.panel-default > .panel-heading{
+  background-color: cadetblue;
+}
+
+.panel-title{
+  text-align: center;
+}
+
+.panel-body{
+  font-size: 16px;
+}
+
+
+.form-group{
+  margin-top: 20px;
+}
