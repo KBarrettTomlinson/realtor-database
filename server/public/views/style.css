@@ -16,6 +16,10 @@ h1{
   color: cornflowerblue;
 }
 
+img{
+  width: 100%;
+}
+
 td{
   padding-right: 10px;
 }
