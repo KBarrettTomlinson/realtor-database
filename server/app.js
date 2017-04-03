@@ -9,7 +9,7 @@ var realty = require('./routes/realty.js');
 
 //database variables
 var mongoose = require( 'mongoose' );
-var mongoURI = "mongodb://<dalecooper>:<12567>@ds147900.mlab.com:47900/kbt-realestate-db";
+var mongoURI = "mongodb://dalecooper:12567@ds147900.mlab.com:47900/kbt-realestate-db";
 var MongoDB = mongoose.connect(mongoURI).connection;
 
 //conneciton error
