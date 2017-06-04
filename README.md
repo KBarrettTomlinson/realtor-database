@@ -18,6 +18,8 @@ Account for the different data (“rent” versus “cost) and ensure that this 
 
 ## Getting Started
 
+Fork or clone the repo.
+
 npm install
 
 grunt
