@@ -72,6 +72,8 @@ $(document).ready(function(){
   //sort listings into rental and sale properties
   function sortListings(objectsArray){
     console.log("inside sortListings");
+    rentalArray = [];
+    salesArray = [];
     for ( var i = 0; i < objectsArray.length; i++){
       var listing = objectsArray[i];
       var rent = parseInt(listing.rent);
@@ -147,7 +149,8 @@ $(document).ready(function(){
 
   function displaySales(){
     console.log("inside displaySales");
-    $( '#sale' ).empty();
+    $('#sale').empty();
+    console.log("salesArray", salesArray);
 
     for (var i = 0; i < salesArray.length; i++){
       var displayObject = salesArray[i];
